@@ -25,6 +25,3 @@ def pascal_triangle(n):
             current.clear()
             current.extend(new)
     return result
-
-
-print(pascal_triangle(6))
