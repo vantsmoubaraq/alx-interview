@@ -26,7 +26,7 @@ def lookup(opened_list, boxes):
     len_after = len(opened_list)
 
     if len_after == len_opened:
-        if opened_list and len(opened_list) + 1 == len(boxes):
+        if boxes and len(opened_list) + 1 == len(boxes):
             return True
         else:
             return False
