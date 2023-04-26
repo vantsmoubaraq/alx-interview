@@ -21,7 +21,7 @@ def lookup(opened_list, boxes):
 
     len_opened = len(opened_list)
     for key in staged_list:
-        if key < len(boxes) and key not in opened_list:
+        if 0 < key < len(boxes) and key not in opened_list:
             opened_list.append(key)
     len_after = len(opened_list)
 
