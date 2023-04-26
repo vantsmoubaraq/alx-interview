@@ -1,36 +1,16 @@
-#!/usr/bin/python3
-
-"""Module solves lockboxes problem"""
+"""Script will unlock list of lists"""
 
 
 def canUnlockAll(boxes):
-    """Solves lockboxes problem"""
-    opened = []
+    """This function will take a list of lists and the content
+       of a list will unlock other lists
+    """
 
-    for i in range(len(boxes[0])):
-        if boxes[0][i] != 0:
-            opened.append(boxes[0][i])
-    return lookup(opened, boxes)
-
-
-def lookup(opened_list, boxes):
-    """Looks for keys"""
-    staged_list = []
-    for i in range(len(opened_list)):
-        staged_list.extend(boxes[opened_list[i]])
-
-    len_opened = len(opened_list)
-    for key in staged_list:
-        if key not in opened_list and 0 < key < len(boxes):
-            opened_list.append(key)
-    len_after = len(opened_list)
-    added = len_after - len_opened
-
-    if len_after == len_opened:
-        if len(opened_list) + 1 == len(boxes):
-            return True
-        else:
-            return False
-
-    staged_list.clear()
-    return lookup(opened_list, boxes)
+    keys = [0]
+    for key in keys:
+        for boxKey in boxes[key]:
+            if boxKey not in keys and boxKey < len(boxes):
+                keys.append(boxKey)
+    if len(keys) == len(boxes):
+        return True
+    return False
