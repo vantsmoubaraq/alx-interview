@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
-"""Lockboxes"""
+"""Module solves lockboxes problem"""
 
 
 def canUnlockAll(boxes):
-    unlocked = [False] * len(boxes)
-    unlocked[0] = True
+    """Solves lockboxes problem"""
+    opened = [False] * len(boxes)
+    opened[0] = True
 
     stack = [0]
 
@@ -13,8 +14,8 @@ def canUnlockAll(boxes):
         box = stack.pop()
 
         for key in boxes[box]:
-            if key < len(boxes) and not unlocked[key]:
-                unlocked[key] = True
+            if key < len(boxes) and not opened[key]:
+                opened[key] = True
                 stack.append(key)
 
-    return all(unlocked)
+    return all(opened)
