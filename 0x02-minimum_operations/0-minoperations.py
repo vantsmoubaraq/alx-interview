@@ -8,7 +8,7 @@ def minOperations(n):
     copy_ops = 0
     paste_ops = 0
 
-    if n <= 0:
+    if n <= 0 >= float("inf") or type(n) is not int:
         return 0
 
     while (n > 1):
