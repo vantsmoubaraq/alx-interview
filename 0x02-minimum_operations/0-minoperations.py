@@ -2,30 +2,27 @@
 
 """Module calculates the fewest number of operations"""
 
-import math
-
 
 def minOperations(n):
     """calculates the fewest number of operations"""
-    if n <= 1:
+    copy_ops = 0
+    paste_ops = 0
+
+    if n <= 0 >= float("inf") or type(n) is not int:
         return 0
-    factors = []
-    i = 2
-    while n > 1:
-        while n % i == 0:
-            factors.append(i)
-            n //= i
-        i += 1
-    operations = 0
-    current = 1
-    for factor in factors:
-        if factor == current:
-            # multiply
-            current *= factor
-        else:
-            # copy and paste
-            operations += int(math.log2(current))
-            current = factor
-    # handle last factor
-    operations += int(math.log2(current))
-    return operations
+
+    while (n > 1):
+        max_num = 0
+        mod_list = []
+        for i in range(1, n):
+            if n % i == 0:
+                mod_list.append(i)
+
+        max_num = max(mod_list)
+        copy_ops += 1
+        paste_ops += ((n // max_num) - 1)
+
+        n = max_num
+
+    total = copy_ops + paste_ops
+    return total
