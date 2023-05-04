@@ -3,7 +3,7 @@
 """Module calculates the fewest number of operations"""
 
 
-def minOperations(n):
+def countProcess(num):
     """calculates the fewest number of operations"""
     con = 1
     p_list = []
