@@ -5,24 +5,22 @@
 
 def minOperations(n):
     """calculates the fewest number of operations"""
-    copy_ops = 0
-    paste_ops = 0
+    con = 1
+    p_list = []
+    val = num
+    while val != 1:
+        con += 1
+        if val % con == 0:
+            while (val % con == 0 and val != 1):
+                val /= con
+                p_list.append(con)
 
-    if n <= 1 or type(n) is not int:
+    return p_list
+
+
+def minOperations(n):
+    """ Return sum of process until n H """
+    if n < 2 or type(n) is not int:
         return 0
-
-    while (n > 1):
-        max_num = 0
-        mod_list = []
-        for i in range(1, n):
-            if n % i == 0:
-                mod_list.append(i)
-
-        max_num = max(mod_list)
-        copy_ops += 1
-        paste_ops += ((n // max_num) - 1)
-
-        n = max_num
-
-    total = copy_ops + paste_ops
-    return total
+    values = countProcess(n)
+    return sum(values)
