@@ -14,21 +14,13 @@ def main():
 
     file_size = 0
     count = 0
-    try:
-        while True:
+    while True:
             line = sys.stdin.readline()
             if not line:
                 break
 
             st = r'\[(.*?)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
             pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - ' + st
-
-            
-    except KeyboardInterrupt as e:
-        print(f"File size: {file_size}")
-        for key, value in sorted(current_dict.items(), key=lambda x: x):
-            print(f"{key}: {value}")
-        print(e)
 
 
 if __name__ == "__main__":
