@@ -34,20 +34,19 @@ def main():
             current_dict[status_code] += 1
             file_size += int(match.group(4))
 
-       
-        if status_code in current_dict:
-            count += 1
-            current_dict[status_code] += 1
-            file_size += int(match.group(4))
-
         
-
-        if status_code in current_dict:
-            count += 1
-            current_dict[status_code] += 1
-            file_size += int(match.group(4))
-                
-            
+        if count == 10:
+            try:    
+                print(f"File size: {file_size}")
+                for key, value in sorted(current_dict.items(),
+                                        key=lambda x: x):
+                    print(f"{key}: {value}")
+                count = 0
+            except KeyboardInterrupt as e:
+                print(f"File size: {file_size}")
+                for key, value in sorted(current_dict.items(), key=lambda x: x):
+                    print(f"{key}: {value}")
+                print(e)
 
 
 if __name__ == "__main__":
