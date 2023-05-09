@@ -39,8 +39,6 @@ def main():
                 print(f"File size: {file_size}")
                 
                 count = 0
-        except KeyboardInterrupt as e:
-            print(f"File size: {file_size}")
             
 
 
