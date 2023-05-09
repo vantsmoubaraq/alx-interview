@@ -14,35 +14,41 @@ def main():
 
     file_size = 0
     count = 0
-   
-    while True:
-        line = sys.stdin.readline()
-        if not line:
-            break
 
-        st = r'\[(.*?)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
-        pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - ' + st
+    try:
+        while True:
+            line = sys.stdin.readline()
+            if not line:
+                break
 
-        match = re.match(pattern, line)
-        if not match:
-            continue
+            st = r'\[(.*?)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
+            pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - ' + st
 
-        status_code = str(match.group(3))
+            match = re.match(pattern, line)
+            if not match:
+                continue
 
-        if status_code in current_dict:
-            count += 1
-            current_dict[status_code] += 1
-            file_size += int(match.group(4))
+            status_code = str(match.group(3))
 
-        
-        if count == 10:    
-            print("File size: {}".format(file_size))
-            sorted_dict = sorted(current_dict.items(),
+            if status_code in current_dict:
+                count += 1
+                current_dict[status_code] += 1
+                file_size += int(match.group(4))
+
+            if count == 10:
+                print("File size: {}".format(file_size))
+                sorted_dict = sorted(current_dict.items(),
                                      key=lambda x: x)
-            for key, value in sorted_dict:
-                print("{}: {}".format(key, value))
-            count = 0
-                
+                for key, value in sorted_dict:
+                    print("{}: {}".format(key, value))
+                count = 0
+    except KeyboardInterrupt as e:
+        sorted_dict = sorted(current_dict.items(),
+                             key=lambda x: x)
+        for key, value in sorted_dict:
+            print("{}: {}".format(key, value))
+        print(e)
+
 
 if __name__ == "__main__":
     main()
