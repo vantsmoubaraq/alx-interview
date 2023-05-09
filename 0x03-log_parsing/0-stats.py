@@ -3,7 +3,7 @@
 """reads stdin line by line and computes metrics"""
 
 import sys
-import re
+
 
 
 def main():
