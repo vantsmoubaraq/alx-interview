@@ -15,26 +15,26 @@ def main():
     file_size = 0
     count = 0
 
-    try:
-        while True:
-            line = sys.stdin.readline()
-            if not line:
-                break
+    while True:
+        line = sys.stdin.readline()
+        if not line:
+            break
 
-            st = r'\[(.*?)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
-            pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - ' + st
+        st = r'\[(.*?)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
+        pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - ' + st
 
-            match = re.match(pattern, line)
-            if not match:
-                continue
+        match = re.match(pattern, line)
+        if not match:
+            continue
 
-            status_code = str(match.group(3))
+        status_code = str(match.group(3))
 
-            if status_code in current_dict:
-                count += 1
-                current_dict[status_code] += 1
-                file_size += int(match.group(4))
+        if status_code in current_dict:
+            count += 1
+            current_dict[status_code] += 1
+            file_size += int(match.group(4))
 
+        try:
             if count == 10:
                 print("File size: {}".format(file_size))
                 sorted_dict = sorted(current_dict.items(),
@@ -42,12 +42,12 @@ def main():
                 for key, value in sorted_dict:
                     print("{}: {}".format(key, value))
                 count = 0
-    except KeyboardInterrupt as e:
-        sorted_dict = sorted(current_dict.items(),
-                             key=lambda x: x)
-        for key, value in sorted_dict:
-            print("{}: {}".format(key, value))
-        print(e)
+        except KeyboardInterrupt as e:
+            sorted_dict = sorted(current_dict.items(),
+                                 key=lambda x: x)
+            for key, value in sorted_dict:
+                print("{}: {}".format(key, value))
+            print(e)
 
 
 if __name__ == "__main__":
