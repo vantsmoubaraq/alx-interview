@@ -2,7 +2,7 @@
 
 import sys
 
-
+  
 def printsts(dic, size):
     """ WWPrints information """
     print("File size: {:d}".format(size))
