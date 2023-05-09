@@ -26,3 +26,5 @@ def minOperations(n):
 
     total = copy_ops + paste_ops
     return total
+
+print(f"Min number of operations:{minOperations(9)}")
