@@ -29,9 +29,23 @@ def main():
 
         status_code = str(match.group(3))
 
+        if status_code in current_dict:
+            count += 1
+            current_dict[status_code] += 1
+            file_size += int(match.group(4))
 
-        try:
-            if count == 10:
+       
+        if status_code in current_dict:
+            count += 1
+            current_dict[status_code] += 1
+            file_size += int(match.group(4))
+
+        
+
+        if status_code in current_dict:
+            count += 1
+            current_dict[status_code] += 1
+            file_size += int(match.group(4))
                 
             
 
