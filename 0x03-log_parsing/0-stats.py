@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 """reads stdin line by line and computes metrics"""
 
 import sys
@@ -49,4 +47,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
