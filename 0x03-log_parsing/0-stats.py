@@ -1,4 +1,4 @@
-"""reads stdin line by line and computes metrics"""
+#!/usr/bin/python3
 
 import sys
 import re
