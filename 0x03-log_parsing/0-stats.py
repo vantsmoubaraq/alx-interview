@@ -34,9 +34,6 @@ def main():
             current_dict[status_code] += 1
             file_size += int(match.group(4))
 
-        try:
-            if count == 10:
-                
             
 
 
