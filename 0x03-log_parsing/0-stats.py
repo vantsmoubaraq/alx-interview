@@ -38,7 +38,6 @@ def main():
             if count == 10:
                 print(f"File size: {file_size}")
                 
-                count = 0
             
 
 
