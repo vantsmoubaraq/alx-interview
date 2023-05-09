@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys
+import re
 
   
 def printsts(dic, size):
