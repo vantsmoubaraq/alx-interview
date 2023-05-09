@@ -35,10 +35,7 @@ def main():
             file_size += int(match.group(4))
 
         
-        if count == 10:    
-            print(f"File size: {file_size}")
-            
-            count = 0
+        
                 
 
 if __name__ == "__main__":
