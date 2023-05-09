@@ -37,8 +37,9 @@ def main():
         
         if count == 10:    
             print(f"File size: {file_size}")
-            for key, value in sorted(current_dict.items(),
-                                     key=lambda x: x):
+            sorted_dict = sorted(current_dict.items(),
+                                     key=lambda x: x)
+            for key, value in sorted_dict:
                 print("{}: {}".format(key, value))
             count = 0
                 
