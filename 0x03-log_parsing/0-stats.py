@@ -35,6 +35,13 @@ def main():
             file_size += int(match.group(4))
 
         
+        if count == 10:
+            print(f"File size: {file_size}")
+            for key, value in sorted(current_dict.items(),
+                                     key=lambda x: x):
+                print(f"{key}: {value}")
+            count = 0
+        
 
 
 if __name__ == "__main__":
