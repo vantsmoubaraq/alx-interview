@@ -1,18 +1,13 @@
 #!/usr/bin/python3
 
-"""
-reads stdin line by line and computes metrics
-"""
+"""reads stdin line by line and computes metrics"""
 
 import sys
 import re
 
-readin = sys.stdin
-
 current_dict = {}
 for num in [200, 301, 400, 401, 403, 404, 405, 500]:
     current_dict[str(num)] = 0
-
 
 file_size = 0
 count = 0
