@@ -37,8 +37,6 @@ try:
         except Exception:
             pass
     printsts(sts, size)
-
-
 except KeyboardInterrupt as e:
     printsts(sts, size)
     raise
