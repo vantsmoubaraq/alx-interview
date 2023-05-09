@@ -5,17 +5,18 @@
 import sys
 import re
 
+readin = sys.stdin
+
 current_dict = {}
 for num in [200, 301, 400, 401, 403, 404, 405, 500]:
     current_dict[str(num)] = 0
 
+
 file_size = 0
 count = 0
 try:
-    while True:
+    while readin:
         line = sys.stdin.readline()
-        if not line:
-            break
 
         string = r'\[(.*?)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
         pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - ' + string
