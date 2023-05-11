@@ -1,54 +1,45 @@
 #!/usr/bin/python3
 
-"""reads stdin line by line and computes metrics"""
+""" script that reads stdin line by line and computes metrics """
 
 import sys
-import re
 
 
-def main():
-    """reads stdin line by line and computes metrics"""
-    current_dict = {}
-    for num in [200, 301, 400, 401, 403, 404, 405, 500]:
-        current_dict[str(num)] = 0
+def printStatus(code_counts, size):
+    """ Prints the calculated metrics"""
+    print("File size: {:d}".format(size))
+    for i in sorted(code_counts.keys()):
+        if code_counts[i] != 0:
+            print("{}: {:d}".format(i, code_counts[i]))
 
-    file_size = 0
-    count = 0
 
-    while True:
-        line = sys.stdin.readline()
-        if not line:
-            break
+statusCodes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+               "404": 0, "405": 0, "500": 0}
 
-        st = r'\[(.*?)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
-        pattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - ' + st
+count = 0
+size = 0
 
-        match = re.match(pattern, line)
-        if not match:
-            continue
+try:
+    for line in sys.stdin:
+        if count != 0 and count % 10 == 0:
+            printStatus(statusCodes, size)
 
-        status_code = str(match.group(3))
-
-        if status_code in current_dict:
-            count += 1
-            current_dict[status_code] += 1
-            file_size += int(match.group(4))
+        stlist = line.split()
+        count += 1
 
         try:
-            if count == 10:
-                print("File size: {}".format(file_size))
-                sorted_dict = sorted(current_dict.items(),
-                                     key=lambda x: x)
-                for key, value in sorted_dict:
-                    print("{}: {}".format(key, value))
-                count = 0
-        except KeyboardInterrupt as e:
-            sorted_dict = sorted(current_dict.items(),
-                                 key=lambda x: x)
-            for key, value in sorted_dict:
-                print("{}: {}".format(key, value))
-            print(e)
+            size += int(stlist[-1])
+        except Exception:
+            pass
+
+        try:
+            if stlist[-2] in statusCodes:
+                statusCodes[stlist[-2]] += 1
+        except Exception:
+            pass
+    printStatus(statusCodes, size)
 
 
-if __name__ == "__main__":
-    main()
+except KeyboardInterrupt:
+    printStatus(statusCodes, size)
+    raise
