@@ -10,6 +10,7 @@ def validUTF8(data):
         bit = 0b10000000
         if not state:
             while (bit & num):
+                print(num)
                 state += 1
                 bit >>= 1
             if state > 4:
@@ -18,4 +19,10 @@ def validUTF8(data):
                 state -= 1
                 if state == 0:
                     return False
+        elif state > 0:
+            print(num)
+            if num >> 6 != 2:
+                print(num)
+                return False
+            state -= 1
     return not state
