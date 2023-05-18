@@ -5,7 +5,6 @@
 
 def validUTF8(data):
     """determines if a given data set represents a valid UTF-8 encoding"""
-    """validate data if it is utf-8"""
     state = 0
     for num in data:
         bit = 0b10000000
@@ -19,8 +18,4 @@ def validUTF8(data):
                 state -= 1
                 if state == 0:
                     return False
-        elif state > 0:
-            if num >> 6 != 2:
-                return False
-            state -= 1
     return not state
